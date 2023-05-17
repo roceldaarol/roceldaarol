@@ -1,0 +1,436 @@
+    /LARABIL T. NAVARRO
+//BIT-CT-2C NIGHT
+
+#include<iostream>
+#include<iomanip>
+#include<windows.h>
+#include<conio.h>
+#include<time.h>
+#include<string>
+
+using namespace std;
+const int PASSLEN=7; // The length of password
+string BIT(void);// Get the password
+void menu(void); // The start menu
+void display(void);
+
+int main()
+{
+	menu();
+	getch();
+	
+
+	return 0;
+}
+string BIT(void)
+{
+	char password[PASSLEN]={'\0'};
+	char letter;
+	int loop;
+	int len;
+	string password2;
+	
+	len=0;
+	loop=0;
+	letter='\0';
+	
+	while(letter!='\r')
+	{
+		letter=getch();
+		if(letter=='\b'&& password[0]=='\0')
+		{
+			len=0;
+			loop=0;
+		}
+		else
+		{
+			if(letter=='\b'&& password[0]!='\0')
+			{
+				cout<<"\b";
+				cout<<" ";
+				cout<<"\b";
+				
+				len--;
+				password[loop]='\0';
+				loop--;
+			}
+			else
+			{
+				if(isprint(letter)!=0 &&loop<PASSLEN)
+				{
+					password[loop]=tolower(letter);
+					
+					cout<<"*";
+				}
+				loop++;
+				if(loop<=PASSLEN)
+				{
+				len++;
+				}
+			}
+		}
+	}
+	
+	loop=0;
+	password2="";
+	
+	while(loop<len)
+	{
+		password2=password2+password[loop];
+		loop++;
+	}
+	return password2;
+}
+void menu(void)
+{
+	
+	string password;
+	string username;
+	time_t date;
+	date=time(NULL);
+	
+	cout<<"\n\n";
+	t:
+	system("cls");
+	char str[]="********* FINAL ACTIVITY IN PROGRAMMING********";
+	system("color F2"); 
+	for(int i=0;i<strlen(str);i++)
+	{
+		cout<<str[i];
+		Sleep(10);
+		
+	}
+	cout<<"\n\n";
+	
+	cout<<"username:";
+	getline(cin,username);
+	cout<<"password:";
+	
+	password=BIT();
+	if(password=="navarro"&& username=="larabil")
+	{
+		system("cls");
+		
+		cout<<" password accepted.";
+		
+		cout<<"date:"<<ctime(&date);
+	    display();
+		}	
+		else
+		{
+			cout<<"\n\n";
+			cout<<"\n\t\tsorry!!!!";
+			cout<<"\n\t\t password denied!!!";
+			Sleep(1000);
+		goto t;
+		
+}
+return;
+}
+//////////////////////////////////////////////
+
+void gotoxy(short x, short y){
+
+COORD pos= {x,y};
+SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),pos);
+}
+/////////////////////////////////////////
+void display(void){
+	eer:
+		
+	system("cls");
+	string choice, name;
+	int costumer=1;
+	char str[50];
+	
+	int totalquantity1=0,totalquantity2=0,totalquantity3=0,totalquantity4=0,totalquantity5=0,totalquantity6=0,totalquantity7=0,totalquantity8=0,totalquantity9=0;
+	int cash=0,change=0;
+	int quantity=0,grandtotal1=0,grandtotal2=0,grandtotal3=0,grandtotal4=0,grandtotal5=0,grandtotal6=0,grandtotal7=0,grandtotal8=0,grandtotal9=0,grandtotal10=0,overalltotal=0;
+    int total1=0,total2=0,total3=0,total4=0,total5=0,total6=0,total7=0,total8=0,total9=0,total10=0,totalquantity=0;
+    
+	gotoxy(1,1);
+    
+	cout<<"ITEM           DESCRIPTION                  PRICE            QUANTITY             TOTAL";
+	gotoxy(1,2);
+	cout<<"[1]           CHOCO FLOAT                   P 59.00                                     ";
+    gotoxy(1,3);
+	cout<<"[2]           COFEE FLOAT                   P 59.00                                     ";
+    gotoxy(1,4);
+	cout<<"[3]           CHOCO MALON PIE               P 52.00                                     ";
+    gotoxy(1,5);
+	cout<<"[4]           MANGGO GRAHAM FLOAT           P 63.00                                     ";
+    gotoxy(1,6);
+	cout<<"[5]           2 1PC BURGER W/ DRINK         P 154.00                                    ";
+    gotoxy(1,7);
+	cout<<"[6]           CHICKEN SANDWICH              P 149.00                                    ";
+    gotoxy(1,8);
+    cout<<"[7]           CHICKEN SANDWICH W/F&D        P 218.00                                    ";
+    gotoxy(1,9);
+    cout<<"[8]           CHICKEN ALA K PIE TRIO        P 186.00                                    ";
+    gotoxy(1,10);
+	cout<<"[9]           JOLLY CRISPY FRIES BUCKET     P 158.00                                    ";
+    gotoxy(1,11);
+	cout<<"[10]           4 PCS CHICKEN JOY FAM BOX S  P 325.00                                    "; 
+    gotoxy(1,12);
+	cout<<"========================================================================================";
+    gotoxy(1,13);
+    cout<<"                                                                                        ";
+    gotoxy(1,14);
+	cout<<"========================================================================================";
+	w:
+	gotoxy(1,15);
+	cout<<"Enter customer name:";
+	getline(cin,name);
+	cout<<"                ";
+	gotoxy(1,16);
+	cout<<"enter choice:";
+	getline(cin,choice);
+	if(choice=="1")
+	{
+	gotoxy(1,17);
+	cout<<"enter quantity:";
+    gotoxy(1,18);
+	cin>>quantity;
+	gotoxy(65,2);
+	cout<<quantity;
+	total1=quantity*59;
+	gotoxy(84,2);
+	cout<<total1;
+	gotoxy(65,2);
+	totalquantity=totalquantity+quantity;////////////////////////////////////////////
+    cout<<totalquantity;
+    gotoxy(84,2);
+    grandtotal1=grandtotal1+total1;
+    
+    cout<<grandtotal1;
+	
+	
+	
+	goto w;
+	
+	
+	}
+	else if(choice=="2")
+	{gotoxy(1,17);
+	cout<<"enter quantity:";
+    gotoxy(1,18);
+	cin>>quantity;
+	gotoxy(65,3);
+	cout<<quantity;
+	total2=quantity*59;
+	gotoxy(84,3);
+	cout<<total2;
+	gotoxy(65,3);
+	totalquantity1=totalquantity1+quantity;/////////choice2///////////////////////////////////
+    cout<<totalquantity1;
+    gotoxy(84,3);
+    grandtotal2=grandtotal2+total2;
+    
+    cout<<grandtotal2;
+    goto w;
+    
+	}
+	else if(choice=="3")
+	{gotoxy(1,17);
+	cout<<"enter quantity:";
+    gotoxy(1,18);
+	cin>>quantity;
+	gotoxy(65,4);
+	cout<<quantity;
+	total3=quantity*59;
+	gotoxy(84,4);
+	cout<<total3;
+	gotoxy(65,4);
+	totalquantity2=totalquantity2+quantity;////////////////choice3////////////////////////////
+    cout<<totalquantity2;
+    gotoxy(84,4);
+    grandtotal3=grandtotal3+total3;
+    
+    cout<<grandtotal3;
+    
+    goto w;
+	}
+	else if(choice=="4")
+	{gotoxy(1,17);
+	cout<<"enter quantity:";
+    gotoxy(1,18);
+	cin>>quantity;
+	gotoxy(65,5);
+	cout<<quantity;
+	total4=quantity*59;
+	gotoxy(84,5);
+	cout<<total4;
+	gotoxy(65,5);
+	totalquantity3=totalquantity3+quantity;///////////////choice4/////////////////////////////
+    cout<<totalquantity3;
+    gotoxy(84,5);
+    grandtotal4=grandtotal4+total4;
+    
+    cout<<grandtotal4;
+    
+    goto w;
+    
+	}
+	else if(choice=="5")
+	{gotoxy(1,17);
+	cout<<"enter quantity:";
+    gotoxy(1,18);
+	cin>>quantity;
+	gotoxy(65,6);
+	cout<<quantity;
+	total5=quantity*59;
+	gotoxy(84,6);
+	cout<<total5;
+	gotoxy(65,6);
+	totalquantity4=totalquantity4+quantity;///////////choice5/////////////////////////////////
+    cout<<totalquantity4;
+    gotoxy(84,6);
+    grandtotal5=grandtotal5+total5;
+    
+    cout<<grandtotal5;
+    
+    goto w;
+	}
+	else if(choice=="6")
+	{gotoxy(1,17);
+	cout<<"enter quantity:";
+    gotoxy(1,18);
+	cin>>quantity;
+	gotoxy(65,7);
+	cout<<quantity;
+	total6=quantity*59;
+	gotoxy(84,7);
+	cout<<total6;
+	gotoxy(65,7);
+	totalquantity5=totalquantity5+quantity;//////////////choice6//////////////////////////////
+    cout<<totalquantity5;
+    gotoxy(84,7);
+    grandtotal6=grandtotal6+total6;
+    
+    cout<<grandtotal6;
+    goto w;
+	}
+	else if(choice=="7")
+	{gotoxy(1,17);
+	cout<<"enter quantity:";
+    gotoxy(1,18);
+	cin>>quantity;
+	gotoxy(65,8);
+	cout<<quantity;
+	total7=quantity*59;
+	gotoxy(84,8);
+	cout<<total7;
+	gotoxy(65,8);
+	totalquantity6=totalquantity6+quantity;////////////////choice7////////////////////////////
+    cout<<totalquantity6;
+    gotoxy(84,8);
+    grandtotal7=grandtotal7+total7;
+    
+    cout<<grandtotal7;
+    
+    goto w;
+	}
+	else if(choice=="8")
+	{gotoxy(1,17);
+	cout<<"enter quantity:";
+    gotoxy(1,18);
+	cin>>quantity;
+	gotoxy(65,9);
+	cout<<quantity;
+	total8=quantity*59;
+	gotoxy(84,9);
+	cout<<total8;
+	gotoxy(65,9);
+	totalquantity7=totalquantity7+quantity;//////////////choice8//////////////////////////////
+    cout<<totalquantity7;
+    gotoxy(84,9);
+    grandtotal8=grandtotal8+total8;
+    
+    cout<<grandtotal8;
+    
+    goto w;
+	}
+	else if(choice=="9")
+	{gotoxy(1,17);
+	cout<<"enter quantity:";
+    gotoxy(1,18);
+	cin>>quantity;
+	gotoxy(65,10);
+	cout<<quantity;
+	total9=quantity*59;
+	gotoxy(84,10);
+	cout<<total9;
+	gotoxy(65,10);
+	totalquantity8=totalquantity8+quantity;//////////////choice9//////////////////////////////
+    cout<<totalquantity8;
+    gotoxy(84,10);
+    grandtotal9=grandtotal9+total9;
+    
+    cout<<grandtotal9;
+    
+    goto w;      
+	}
+	else if(choice=="10")
+	{gotoxy(1,17);
+	cout<<"enter quantity:";
+    gotoxy(1,18);
+	cin>>quantity;
+	gotoxy(65,11);
+	cout<<quantity;
+	total10=quantity*59;
+	gotoxy(84,11);
+	cout<<total10;
+	gotoxy(65,11);
+	totalquantity9=totalquantity9+quantity;/////////////////choice10///////////////////////////
+    cout<<totalquantity9
+    cout<<grandtotal10;
+    goto w;
+	}
+	else if(choice=="P")
+	{
+		overalltotal=grandtotal1+grandtotal2+grandtotal3+grandtotal4+grandtotal5+grandtotal6+grandtotal7+grandtotal8+grandtotal9+grandtotal10;
+		gotoxy(1,20);
+		cout<<"========================================================================";
+	    gotoxy(1,21);
+	    
+		cout<<"GRAND TOTAL:"<<overalltotal;
+		f:
+		gotoxy(1,22);
+		cout<<"CASH:";
+		cin>>cash;
+		
+		if(cash<overalltotal)
+		{
+		gotoxy(1,23);
+		cout<<"insufficient money";
+		Sleep(2000);
+		goto f;
+		}
+		
+}
+	
+	else
+	{
+		change==cash-overalltotal;
+		gotoxy(1,24);
+		cout<<change;
+		cout<<" TOTAL CHANGE:"<<change;
+		gotoxy(1,26);
+		cout<<"PRINTING RECEIPT................";
+		Sleep(2000);
+		cout<<"NEXT CUSTOMER PLEASE............";
+		Sleep(2000);
+	}
+	cin.clear();
+	fflush(stdin);
+	
+	goto eer;
+}
+
+
+
+	
+
+
+
+
