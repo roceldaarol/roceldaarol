@@ -45,4 +45,219 @@ https://off.com/en/product/botanicals/insect-repellent-lotion#:~:text=Forget%20a
 
 
 </body>
-</html>
+</html
+
+
+
+
+//sound sensor
+
+int soundSensorPin = A0;
+int led1 = 5;
+int led2 = 6;
+int led3 = 7;
+int threshold = 100;
+int buzzerPin = 10;
+int clapCount = 0;
+boolean clapped = false;
+
+void setup() {
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+  pinMode (buzzerPin, INPUT);
+  pinMode(soundSensorPin, INPUT);
+ 
+}
+
+void loop() {
+  int sensorValue = analogRead(soundSensorPin);
+
+  if (sensorValue > threshold && !clapped) {
+    clapped = true;
+    clapCount++;
+    clapAction(clapCount);
+  } else if (sensorValue < threshold) {
+    clapped = false;
+  }
+}
+
+void clapAction(int count) {
+  if (count == 1) {
+
+    digitalWrite(led1, LOW);
+     digitalWrite(led2, HIGH);
+    digitalWrite(led3, LOW);
+    tone (buzzerPin,1000 );
+     delay (500);
+
+  } else if (count == 2) {
+    digitalWrite(led1, HIGH);
+    digitalWrite(led2, LOW);
+    digitalWrite(led3, HIGH);
+   noTone (buzzerPin);
+      delay (500);
+
+  } else if (count == 3) {
+    digitalWrite(led3, LOW);
+    digitalWrite(led2, LOW);
+    digitalWrite(led1, LOW);
+    noTone (buzzerPin);
+    delay (500);
+
+  } else  if (count == 4) {
+    digitalWrite(led1, HIGH);
+    digitalWrite(led2, HIGH);
+    digitalWrite(led3, HIGH);
+      tone (buzzerPin,1000 );
+      delay (500);
+    
+
+    } else  if (count == 5) {
+    digitalWrite(led1, HIGH);
+    delay (500);
+    digitalWrite(led1, LOW);
+    delay (500);
+     noTone (buzzerPin);
+
+    digitalWrite(led2, HIGH);
+    delay (500);
+     digitalWrite(led2, LOW);
+      delay (500);
+      tone (buzzerPin,1000 );
+
+    digitalWrite(led3, HIGH);
+    delay (500);
+      digitalWrite(led3, LOW);
+    delay (500);
+     noTone (buzzerPin);
+    
+
+  }else {
+    clapCount = 0;
+    digitalWrite(led1, HIGH);
+    digitalWrite(led2, HIGH);
+    digitalWrite(led3, HIGH);
+     noTone (buzzerPin);
+     delay (1000);
+}
+}
+
+
+
+
+//ultrasonic
+const int trigPin = 2;
+const int echoPin = 1;
+const int redLedPin = 6;
+const int yellowLedPin = 5;
+const int greenLedPin = 4;
+const int buzzerPin = 3;
+
+void setup() {
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(redLedPin, OUTPUT);
+  pinMode(yellowLedPin, OUTPUT);
+  pinMode(greenLedPin, OUTPUT);
+  pinMode(buzzerPin, OUTPUT);
+
+}
+
+void loop() {
+  long duration, distance;
+
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+
+  distance = duration / 58.2;
+
+
+  
+  if (distance < 10) {
+    digitalWrite(redLedPin, HIGH);
+    digitalWrite(yellowLedPin, LOW);
+    digitalWrite(greenLedPin, LOW);
+    tone(buzzerPin,1000);
+  
+    delay(1000);
+   
+    
+    } else if (distance >10 && distance <=20) {
+      digitalWrite(redLedPin, LOW);
+      digitalWrite(yellowLedPin, HIGH);
+      digitalWrite(greenLedPin, LOW); 
+  
+      noTone(buzzerPin); 
+      delay(500); 
+      
+     
+      
+    } else if (distance >20 && distance <=30) {
+      digitalWrite(redLedPin, LOW); 
+      digitalWrite(yellowLedPin, LOW); 
+      digitalWrite(greenLedPin,HIGH); 
+      
+     
+      
+    } else {
+      digitalWrite(redLedPin, LOW); 
+      digitalWrite(yellowLedPin, LOW); 
+      digitalWrite(greenLedPin,HIGH); 
+      
+       
+    }
+}
+
+
+// Tilt sensor
+
+int  tiltsensor = 7;
+int led1 = 8;
+int led2 = 10;
+int buzz = 6;
+
+void setup (){
+pinMode(tiltsensor, INPUT);
+pinMode(led1, OUTPUT);
+pinMode(led2, OUTPUT);
+pinMode(buzz, OUTPUT);
+
+  Serial.begin(9600);
+
+}
+
+void loop(){
+  
+  if (digitalRead(tiltsensor) ==1)
+{
+
+digitalWrite(led1, HIGH);
+digitalWrite(led2, LOW);
+digitalWrite(buzz, HIGH);
+delay(100);
+}
+else 
+{
+
+digitalWrite(led1, LOW);
+digitalWrite(led2, HIGH);
+digitalWrite(buzz, LOW);
+
+}
+  delay(100);
+}
+
+
+
+                          
+
+
+
+ 
